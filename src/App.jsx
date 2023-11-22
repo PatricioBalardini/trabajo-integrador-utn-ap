@@ -1,35 +1,61 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import { TaskCreator } from "./components/TaskCreator";
+import { TaskTable } from "./components/TaskTable";
+import { VisibilityControl } from "./components/VisibilityControl";
+import { Container } from "./components/Container";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export const App = () => {
+  const [taskItems, setTasksItems] = useState([]);
+  const [showCompleted, setShowCompleted] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(taskItems));
+  }, [taskItems]);
+
+  const createNewTask = (taskName) => {
+    if (!taskItems.find((t) => t.name === taskName)) {
+      setTasksItems([...taskItems, { name: taskName, done: false }]);
+    }
+  };
+
+  const toggleTask = (task) => {
+    setTasksItems(
+      taskItems.map((t) => (t.name === task.name ? { ...t, done: !t.done } : t))
+    );
+  };
+
+  const cleanTasks = () => {
+    setTasksItems(taskItems.filter((task) => !task.done));
+    setShowCompleted(false);
+  };
+
+  useEffect(() => {
+    let data = localStorage.getItem("tasks");
+    if (data) {
+      setTasksItems(JSON.parse(data));
+    }
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+    <main className="main">
+      {" "}
+      <Container>
+        <TaskCreator createNewTask={createNewTask} />
+        <TaskTable tasks={taskItems} toggleTask={toggleTask} />
+        <VisibilityControl
+          isChecked={showCompleted}
+          setShowCompleted={(checked) => setShowCompleted(checked)}
+          cleanTasks={cleanTasks}
+        />
+        {showCompleted === true && (
+          <TaskTable
+            tasks={taskItems}
+            toggleTask={toggleTask}
+            showCompleted={showCompleted}
+          />
+        )}
+      </Container>
+    </main>
+  );
+};
