@@ -1,10 +1,15 @@
 export const VisibilityControl = ({
   isChecked,
-  setShowClmpleted,
+  callback,
+  description,
   cleanTasks,
 }) => {
   const handleDelete = () => {
-    if (window.confirm("Una vez eliminida no hay vuelta atras, pensalo...")) {
+    if (
+      window.confirm(
+        `Una vez eliminida no hay vuelta atras, pensalo... ${description} `
+      )
+    ) {
       cleanTasks();
     }
   };
@@ -15,9 +20,9 @@ export const VisibilityControl = ({
         <input
           type="checkbox"
           checked={isChecked}
-          onChange={(e) => setShowClmpleted(e.target.checked)}
+          onChange={(e) => callback(e.target.checked)}
         />{" "}
-        <label>Mostrar tareas terminadas</label>
+        <label>Mostrar {description}</label>
       </div>
       <button onClick={handleDelete}>Borrar</button>
     </div>

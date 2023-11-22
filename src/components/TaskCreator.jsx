@@ -4,6 +4,10 @@ export const TaskCreator = ({ createNewTask }) => {
   const [newTaskName, setNewTaskName] = useState("");
 
   const handleSubmit = (e) => {
+    if (newTaskName.trim() === "") {
+      alert("Por favor entrar tarea");
+      return;
+    }
     e.preventDefault();
     createNewTask(newTaskName);
     setNewTaskName("");
@@ -19,11 +23,13 @@ export const TaskCreator = ({ createNewTask }) => {
           placeholder="Nueva tarea"
           value={newTaskName}
           onChange={(e) => setNewTaskName(e.target.value)}
+          //placeholder="Entrar nueva tarea..."
+          autoFocus
         />
       </div>
       <div>
         {" "}
-        <button>Guardar tarea</button>
+        <button type="submit">Guardar tarea</button>
       </div>
     </form>
   );

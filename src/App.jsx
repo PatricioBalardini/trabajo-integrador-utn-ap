@@ -10,6 +10,13 @@ export const App = () => {
   const [showCompleted, setShowCompleted] = useState(false);
 
   useEffect(() => {
+    let data = localStorage.getItem("tasks");
+    if (data) {
+      setTasksItems(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(taskItems));
   }, [taskItems]);
 
@@ -30,13 +37,6 @@ export const App = () => {
     setShowCompleted(false);
   };
 
-  useEffect(() => {
-    let data = localStorage.getItem("tasks");
-    if (data) {
-      setTasksItems(JSON.parse(data));
-    }
-  }, []);
-
   return (
     <main className="main">
       {" "}
@@ -44,11 +44,12 @@ export const App = () => {
         <TaskCreator createNewTask={createNewTask} />
         <TaskTable tasks={taskItems} toggleTask={toggleTask} />
         <VisibilityControl
+          description="Tareas Completadas"
           isChecked={showCompleted}
-          setShowCompleted={(checked) => setShowCompleted(checked)}
+          callback={(checked) => setShowCompleted(checked)}
           cleanTasks={cleanTasks}
         />
-        {showCompleted === true && (
+        {showCompleted && (
           <TaskTable
             tasks={taskItems}
             toggleTask={toggleTask}
