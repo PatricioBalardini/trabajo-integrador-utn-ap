@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { TaskCreator } from "./components/TaskCreator";
-import { TaskTable } from "./components/TaskTable";
-import { VisibilityControl } from "./components/VisibilityControl";
 import { Container } from "./components/Container";
+import { TaskForm } from "./components/TaskForm";
+import { TaskList } from "./components/TaskList";
+import { VisibilityControl } from "./components/VisibilityControl";
 import "./App.css";
+
 
 export const App = () => {
   const [taskItems, setTasksItems] = useState([]);
@@ -38,19 +39,19 @@ export const App = () => {
   };
 
   return (
-    <main className="main">
+    <main className="bg-dark vh-100 text-white">
       {" "}
       <Container>
-        <TaskCreator createNewTask={createNewTask} />
-        <TaskTable tasks={taskItems} toggleTask={toggleTask} />
+        <TaskForm createNewTask={createNewTask} />
+        <TaskList tasks={taskItems} toggleTask={toggleTask} />
         <VisibilityControl
-          description="Tareas Completadas"
+          description="Completas"
           isChecked={showCompleted}
           callback={(checked) => setShowCompleted(checked)}
           cleanTasks={cleanTasks}
         />
         {showCompleted && (
-          <TaskTable
+          <TaskList
             tasks={taskItems}
             toggleTask={toggleTask}
             showCompleted={showCompleted}

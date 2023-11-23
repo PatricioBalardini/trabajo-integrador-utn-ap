@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const TaskCreator = ({ createNewTask }) => {
+export const TaskForm = ({ createNewTask }) => {
   const [newTaskName, setNewTaskName] = useState("");
 
   const handleSubmit = (e) => {
@@ -14,22 +14,23 @@ export const TaskCreator = ({ createNewTask }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="m-3 row" onSubmit={handleSubmit}>
       {" "}
-      <div>
-        {" "}
+      <div className="col-9">
         <input
+          className="form-control form-control-sm"
           type="text"
           placeholder="Nueva tarea"
           value={newTaskName}
           onChange={(e) => setNewTaskName(e.target.value)}
-          //placeholder="Entrar nueva tarea..."
           autoFocus
         />
       </div>
-      <div>
+      <div className="col-3 p-0 d-flex aling-items-center">
         {" "}
-        <button type="submit">Guardar tarea</button>
+        <button className="btn btn-outline-success btn-sm" type="submit">
+          Agregar
+        </button>
       </div>
     </form>
   );

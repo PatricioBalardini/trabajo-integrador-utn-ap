@@ -1,42 +1,66 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap");
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  font-family: "Inter", sans-serif;
+  color: #f3ecec;
+  background-color: rgb(10, 10, 10);
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
 #root {
-  max-width: 1280px;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  width: 90%;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+a {
+  font-size: 14px;
+  line-height: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  font-size: 48px;
+  line-height: 60px;
+  font-family: "Poppins", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+h2 {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: auto;
 }
 
-.card {
-  padding: 2em;
+h3 {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: auto;
 }
 
-.read-the-docs {
-  color: #888;
+button {
+  background: none;
+  border: none;
+  color: #f3ecec;
 }
+
+input,
+form {
+  font-family: "Inter", sans-serif;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+} */
