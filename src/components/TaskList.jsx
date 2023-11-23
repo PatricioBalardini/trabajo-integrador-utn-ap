@@ -16,7 +16,7 @@ export const TaskList = ({ tasks, toggleTask, showCompleted = false }) => {
     <table className="table table-striped table-bordered table-dark border-secondary">
       <thead>
         <tr className="table-success">
-          <th>{headerText}</th>
+          <th className="text-center fw-light">{headerText}</th>
         </tr>
       </thead>
       <tbody>{taskTableRows(showCompleted)}</tbody>

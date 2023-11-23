@@ -18,7 +18,7 @@ export const TaskForm = ({ createNewTask }) => {
       {" "}
       <div className="col-9">
         <input
-          className="form-control form-control-sm"
+          className="form-control form-control-sm fw-light"
           type="text"
           placeholder="Nueva tarea"
           value={newTaskName}
@@ -28,7 +28,10 @@ export const TaskForm = ({ createNewTask }) => {
       </div>
       <div className="col-3 p-0 d-flex aling-items-center">
         {" "}
-        <button className="btn btn-outline-success btn-sm" type="submit">
+        <button
+          className="btn btn-outline-success btn-sm fw-light"
+          type="submit"
+        >
           Agregar
         </button>
       </div>
